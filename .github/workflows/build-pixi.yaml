@@ -8,18 +8,13 @@ on:
 
 jobs:
   build:
-    name: build-${{ matrix.platform }}
+    name: build-${{ matrix.rosdistro }}-${{ matrix.runner }}
     runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - platform: linux-64
-            runner: ubuntu-latest
-          - platform: osx-arm64
-            runner: macos-15
-          - platform: win-64
-            runner: windows-latest
+        rosdistro: [humble, jazzy, kilted, rolling]
+        runner: [ubuntu-latest, macos-15, windows-latest]
 
     steps:
       - name: Checkout
@@ -32,4 +27,4 @@ jobs:
           run-install: false
 
       - name: Build workspace
-        run: pixi install
+        run: pixi install --environment ${{ matrix.rosdistro }}

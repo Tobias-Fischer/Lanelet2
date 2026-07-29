@@ -55,6 +55,7 @@ mrt_add_library(${PROJECT_NAME}
     INCLUDES ${PROJECT_HEADER_FILES_INC} ${PROJECT_SOURCE_FILES_INC}
     SOURCES ${PROJECT_SOURCE_FILES_SRC}
     )
+target_link_libraries(${PROJECT_NAME} PUBLIC Eigen3::Eigen)
 
 #############
 ## Install ##

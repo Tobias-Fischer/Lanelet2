@@ -16,7 +16,7 @@
   <buildtool_depend>mrt_cmake_modules</buildtool_depend>
   <buildtool_export_depend>mrt_cmake_modules</buildtool_export_depend>
   <test_depend>gtest</test_depend>
-  <depend version_lt="5">eigen</depend>
+  <depend>eigen</depend>
   <depend>boost</depend>
 
   <export>
