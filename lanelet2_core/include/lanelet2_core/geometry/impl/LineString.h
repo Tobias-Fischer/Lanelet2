@@ -799,8 +799,7 @@ IfLS<LineString3dT, std::pair<BasicPoint3d, BasicPoint3d>> projectedPoint3d(cons
   return internal::projectedPoint3d(traits::toHybrid(l1), traits::toHybrid(l2));
 }
 
-template <typename LineString3d1T, typename LineString3d2T,
-          IfLS2<LineString3d1T, LineString3d2T, int> = 0>
+template <typename LineString3d1T, typename LineString3d2T, IfLS2<LineString3d1T, LineString3d2T, int> = 0>
 double distance3d(const LineString3d1T& l1, const LineString3d2T& l2) {
   auto projPoint = internal::projectedPoint3d(traits::toHybrid(traits::to3D(l1)), traits::toHybrid(traits::to3D(l2)));
   return (projPoint.first - projPoint.second).norm();
