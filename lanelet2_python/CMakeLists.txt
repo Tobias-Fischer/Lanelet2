@@ -13,6 +13,10 @@ endif()
 include(UseMrtStdCompilerFlags)
 include(GatherDeps)
 
+if(MSVC)
+  add_compile_options(/bigobj)
+endif()
+
 # You can add a custom.cmake in order to add special handling for this package. E.g. you can do:
 # list(REMOVE_ITEM DEPENDEND_PACKAGES <package name 1> <package name 2> ...)
 # To remove libs which cannot be found automatically. You can also "find_package" other, custom dependencies there.
