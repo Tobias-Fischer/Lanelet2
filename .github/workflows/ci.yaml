@@ -19,16 +19,16 @@ jobs:
     steps:
       - name: Setup docker buildx
         id: buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v4
 
       - name: Setup docker cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: /tmp/.docker-cache
           key: ${{runner.os}}-docker-humble
 
       - name: Build dependencies
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         with:
           builder: ${{ steps.buildx.outputs.name }}
           tags: lanelet2_src
@@ -53,16 +53,16 @@ jobs:
     steps:
       - name: Setup docker buildx
         id: buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v4
 
       - name: Setup docker cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: /tmp/.docker-cache
           key: ${{runner.os}}-docker-humble
 
       - name: Build dependencies
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         with:
           builder: ${{ steps.buildx.outputs.name }}
           tags: lanelet2_src
@@ -102,20 +102,20 @@ jobs:
       - name: Delete unnecessary tools folder
         run: rm -rf /opt/hostedtoolcache
       
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         
       - name: Setup docker buildx
         id: buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v4
 
       - name: Setup docker cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: /tmp/.docker-cache
           key: ${{runner.os}}-docker-${{ matrix.rosdistro }}
 
       - name: Build dependencies
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         with:
           builder: ${{ steps.buildx.outputs.name }}
           tags: lanelet2_base:${{ matrix.rosdistro }}
@@ -129,7 +129,7 @@ jobs:
           target: lanelet2_deps
 
       - name: Build Lanelet2
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         if: ${{ matrix.rosdistro == 'noetic' }}
         with:
           builder: ${{ steps.buildx.outputs.name }}
@@ -144,7 +144,7 @@ jobs:
           target: lanelet2
 
       - name: Build Lanelet2 (skip lcov)
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         if: ${{ matrix.rosdistro == 'jazzy' || matrix.rosdistro == 'humble' || matrix.rosdistro == 'galactic' }}
         with:
           builder: ${{ steps.buildx.outputs.name }}
@@ -220,10 +220,10 @@ jobs:
     steps:
       - name: Setup docker buildx
         id: buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v4
 
       - name: Build dependencies
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         with:
           builder: ${{ steps.buildx.outputs.name }}
           file: .github/conan_dockerfile/Dockerfile
