@@ -475,8 +475,8 @@ inline BasicLineString2d shiftConvexSharp(const LineString2dT& lineString, const
   }
   BasicPoint2d firstP = shiftPerpendicular(lineString, idx, distance, true, pv);
   BasicPoint2d lastP = shiftPerpendicular(lineString, idx, distance, false, pv);
-  auto alpha = M_PI - std::acos(pv.following.dot(pv.preceding) / (pv.preceding.norm() * pv.following.norm()));
-  auto overshoot = distance * std::tan(M_PI_4 - alpha / 4);
+  auto alpha = Pi - std::acos(pv.following.dot(pv.preceding) / (pv.preceding.norm() * pv.following.norm()));
+  auto overshoot = distance * std::tan(PiQuarter - alpha / 4);
   return {firstP + pv.preceding.normalized() * overshoot, lastP - pv.following.normalized() * overshoot};
 }
 
