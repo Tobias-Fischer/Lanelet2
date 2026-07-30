@@ -11,6 +11,9 @@ endif()
 ## Find packages ##
 ###################
 find_package(mrt_cmake_modules REQUIRED)
+if(WIN32 AND ROS_VERSION EQUAL 1)
+  set(MRT_CMAKE_ENV ${CATKIN_ENV})
+endif()
 include(UseMrtStdCompilerFlags)
 include(GatherDeps)
 
