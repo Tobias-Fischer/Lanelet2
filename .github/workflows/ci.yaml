@@ -181,6 +181,10 @@ jobs:
           docker rm -f lanelet2_test_${{ matrix.rosdistro }};
           docker rm -f lanelet2_test_${{ matrix.rosdistro }}_lcov;
 
+      - name: Install lcov
+        if: ${{ matrix.rosdistro == 'noetic' }}
+        run: sudo apt-get update && sudo apt-get install --yes lcov
+
       - name: Report code coverage
         uses: zgosalvez/github-actions-report-lcov@v7.1.0
         if: ${{ matrix.rosdistro == 'noetic' }}
