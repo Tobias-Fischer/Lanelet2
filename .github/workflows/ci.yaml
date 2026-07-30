@@ -175,6 +175,7 @@ jobs:
           docker run -i --name lanelet2_test_${{ matrix.rosdistro }}_lcov lanelet2_${{ matrix.rosdistro }}_post_run /home/developer/workspace/src/lanelet2/.github/lcov_merge.bash;
           mkdir -p ./lcov;
           docker cp lanelet2_test_${{ matrix.rosdistro }}_lcov:$(docker inspect --format='{{.Config.WorkingDir}}' lanelet2_test_${{ matrix.rosdistro }}_lcov)/lcov/full_coverage.lcov ./lcov/full_coverage.lcov;
+          sed -i "s|/home/developer/workspace/src/lanelet2|${GITHUB_WORKSPACE}|g" ./lcov/full_coverage.lcov;
 
       - name: Cleanup Docker Container
         run: |
