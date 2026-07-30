@@ -16,9 +16,6 @@ jobs:
       matrix:
         rosdistro: [noetic, humble, jazzy, kilted, rolling]
         runner: [ubuntu-latest, macos-15, windows-latest]
-        exclude:
-          - rosdistro: noetic
-            runner: windows-latest
 
     steps:
       - name: Checkout

@@ -8,8 +8,7 @@ platforms = ["linux-64", "osx-arm64", "win-64"]
 preview = ["pixi-build"]
 
 [feature.noetic]
-channels = ["https://prefix.dev/robostack-noetic"]
-platforms = ["linux-64", "osx-arm64"]
+channels = ["robostack-noetic"]
 
 [feature.noetic.dependencies]
 ros-noetic-lanelet2 = { path = "lanelet2/package.xml" }
