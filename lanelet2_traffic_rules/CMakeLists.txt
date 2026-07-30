@@ -63,7 +63,7 @@ mrt_install(PROGRAMS scripts FILES res data ${PROJECT_INSTALL_FILES})
 ## Testing ##
 #############
 # Add test targets for cpp and python tests
-if (CATKIN_ENABLE_TESTING)
+if (CATKIN_ENABLE_TESTING AND NOT CATKIN_SKIP_TESTING)
     mrt_add_tests(test)
     mrt_add_nosetests(test)
 endif()
