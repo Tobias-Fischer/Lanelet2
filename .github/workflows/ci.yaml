@@ -192,7 +192,9 @@ jobs:
         with:
           coverage-files: ./lcov/full_coverage.lcov
           artifact-name: 
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # The token is only used to comment the coverage summary on the pull request.
+          # Pull requests from forks get a read-only token, so skip the comment there.
+          github-token: ${{ !github.event.pull_request.head.repo.fork && secrets.GITHUB_TOKEN || '' }}
 
   full_conan_installation:
     needs: lint
